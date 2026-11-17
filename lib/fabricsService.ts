@@ -88,10 +88,42 @@ function sortFabricsBySequence<T extends FabricDocumentLike>(docs: T[]): T[] {
   });
 }
 
+interface CacheEntry<T> {
+  data: T;
+  expiresAt: number;
+}
+
+const memoryCache = new Map<string, CacheEntry<unknown>>();
+
+function getCached<T>(key: string): T | null {
+  const entry = memoryCache.get(key);
+  if (entry && Date.now() < entry.expiresAt) {
+    return entry.data as T;
+  }
+  return null;
+}
+
+function setCached<T>(key: string, data: T, ttlSeconds: number = 60): void {
+  if (memoryCache.size > 200) {
+    const now = Date.now();
+    for (const [k, v] of memoryCache.entries()) {
+      if (now >= v.expiresAt) memoryCache.delete(k);
+    }
+  }
+  memoryCache.set(key, {
+    data,
+    expiresAt: Date.now() + ttlSeconds * 1000,
+  });
+}
+
 /**
- * Fetch all published fabrics from MongoDB Atlas with fallback
+ * Fetch all published fabrics from MongoDB Atlas with in-memory TTL caching and static fallback
  */
 export async function getPublishedFabrics(): Promise<LiveFabric[]> {
+  const cached = getCached<LiveFabric[]>('fabrics_published');
+  if (cached) return cached;
+
+  let result: LiveFabric[] | null = null;
   try {
     if (process.env.MONGODB_URI) {
       await connectDB();
@@ -100,7 +132,9 @@ export async function getPublishedFabrics(): Promise<LiveFabric[]> {
         .lean();
 
       if (docs && docs.length > 0) {
-        return sortFabricsBySequence(docs).map(mapToLiveFabric);
+        result = sortFabricsBySequence(docs).map(mapToLiveFabric);
+        setCached('fabrics_published', result, 60);
+        return result;
       }
     }
   } catch (error) {
@@ -108,7 +142,7 @@ export async function getPublishedFabrics(): Promise<LiveFabric[]> {
   }
 
   // Graceful fallback to static fabrics
-  return FABRICS.map((f, i) => ({
+  result = FABRICS.map((f, i) => ({
     id: f.slug,
     name: f.title,
     title: f.title,
@@ -132,12 +166,19 @@ export async function getPublishedFabrics(): Promise<LiveFabric[]> {
     displayOrder: i + 1,
     menuOrder: i + 1,
   }));
+
+  setCached('fabrics_published', result, 60);
+  return result;
 }
 
 /**
  * Fetch fabrics for main catalog directory (/fabrics)
  */
 export async function getCatalogFabrics(): Promise<LiveFabric[]> {
+  const cached = getCached<LiveFabric[]>('fabrics_catalog');
+  if (cached) return cached;
+
+  let result: LiveFabric[] | null = null;
   try {
     if (process.env.MONGODB_URI) {
       await connectDB();
@@ -149,7 +190,9 @@ export async function getCatalogFabrics(): Promise<LiveFabric[]> {
         .lean();
 
       if (docs && docs.length > 0) {
-        return sortFabricsBySequence(docs).map(mapToLiveFabric);
+        result = sortFabricsBySequence(docs).map(mapToLiveFabric);
+        setCached('fabrics_catalog', result, 60);
+        return result;
       }
     }
   } catch (error) {
@@ -157,13 +200,19 @@ export async function getCatalogFabrics(): Promise<LiveFabric[]> {
   }
 
   const all = await getPublishedFabrics();
-  return all.filter((f) => f.showInCatalog !== false);
+  result = all.filter((f) => f.showInCatalog !== false);
+  setCached('fabrics_catalog', result, 60);
+  return result;
 }
 
 /**
  * Fetch fabrics designated for navbar & footer menu dropdown with fallback
  */
 export async function getMenuFabrics(): Promise<LiveFabric[]> {
+  const cached = getCached<LiveFabric[]>('fabrics_menu');
+  if (cached) return cached;
+
+  let result: LiveFabric[] | null = null;
   try {
     if (process.env.MONGODB_URI) {
       await connectDB();
@@ -175,7 +224,9 @@ export async function getMenuFabrics(): Promise<LiveFabric[]> {
         .lean();
 
       if (docs && docs.length > 0) {
-        return sortFabricsBySequence(docs).map(mapToLiveFabric);
+        result = sortFabricsBySequence(docs).map(mapToLiveFabric);
+        setCached('fabrics_menu', result, 60);
+        return result;
       }
     }
   } catch (error) {
@@ -183,13 +234,19 @@ export async function getMenuFabrics(): Promise<LiveFabric[]> {
   }
 
   const all = await getPublishedFabrics();
-  return all.filter((f) => f.showInMenu !== false);
+  result = all.filter((f) => f.showInMenu !== false);
+  setCached('fabrics_menu', result, 60);
+  return result;
 }
 
 /**
  * Fetch fabrics for homepage portfolio section
  */
 export async function getHomepageFabrics(): Promise<LiveFabric[]> {
+  const cached = getCached<LiveFabric[]>('fabrics_homepage');
+  if (cached) return cached;
+
+  let result: LiveFabric[] | null = null;
   try {
     if (process.env.MONGODB_URI) {
       await connectDB();
@@ -201,7 +258,9 @@ export async function getHomepageFabrics(): Promise<LiveFabric[]> {
         .lean();
 
       if (docs && docs.length > 0) {
-        return sortFabricsBySequence(docs).map(mapToLiveFabric);
+        result = sortFabricsBySequence(docs).map(mapToLiveFabric);
+        setCached('fabrics_homepage', result, 60);
+        return result;
       }
     }
   } catch (error) {
@@ -209,13 +268,19 @@ export async function getHomepageFabrics(): Promise<LiveFabric[]> {
   }
 
   const all = await getPublishedFabrics();
-  return all.filter((f) => f.showOnHomepage !== false);
+  result = all.filter((f) => f.showOnHomepage !== false);
+  setCached('fabrics_homepage', result, 60);
+  return result;
 }
 
 /**
  * Fetch fabrics for enquiry form dropdown
  */
 export async function getEnquiryFabrics(): Promise<LiveFabric[]> {
+  const cached = getCached<LiveFabric[]>('fabrics_enquiry');
+  if (cached) return cached;
+
+  let result: LiveFabric[] | null = null;
   try {
     if (process.env.MONGODB_URI) {
       await connectDB();
@@ -227,7 +292,9 @@ export async function getEnquiryFabrics(): Promise<LiveFabric[]> {
         .lean();
 
       if (docs && docs.length > 0) {
-        return sortFabricsBySequence(docs).map(mapToLiveFabric);
+        result = sortFabricsBySequence(docs).map(mapToLiveFabric);
+        setCached('fabrics_enquiry', result, 60);
+        return result;
       }
     }
   } catch (error) {
@@ -235,7 +302,9 @@ export async function getEnquiryFabrics(): Promise<LiveFabric[]> {
   }
 
   const all = await getPublishedFabrics();
-  return all.filter((f) => f.showInEnquiry !== false);
+  result = all.filter((f) => f.showInEnquiry !== false);
+  setCached('fabrics_enquiry', result, 60);
+  return result;
 }
 
 /**
@@ -247,13 +316,18 @@ export async function getFabricBySlug(slug: string): Promise<LiveFabric | null> 
     return null;
   }
   const cleanSlug = slug.trim().toLowerCase();
+  const cacheKey = `fabric_slug_${cleanSlug}`;
+  const cached = getCached<LiveFabric | null>(cacheKey);
+  if (cached !== null) return cached;
 
   try {
     if (process.env.MONGODB_URI) {
       await connectDB();
       const doc = await WebsiteFabric.findOne({ slug: cleanSlug, isPublished: true }).lean();
       if (doc) {
-        return mapToLiveFabric(doc);
+        const mapped = mapToLiveFabric(doc);
+        setCached(cacheKey, mapped, 60);
+        return mapped;
       }
     }
   } catch (error) {
@@ -262,7 +336,7 @@ export async function getFabricBySlug(slug: string): Promise<LiveFabric | null> 
 
   const staticFound = FABRICS.find((f) => f.slug === cleanSlug);
   if (staticFound) {
-    return {
+    const fallback: LiveFabric = {
       id: staticFound.slug,
       name: staticFound.title,
       title: staticFound.title,
@@ -285,7 +359,10 @@ export async function getFabricBySlug(slug: string): Promise<LiveFabric | null> 
       displayOrder: 1,
       menuOrder: 1,
     };
+    setCached(cacheKey, fallback, 60);
+    return fallback;
   }
 
+  setCached(cacheKey, null, 60);
   return null;
 }

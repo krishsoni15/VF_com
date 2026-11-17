@@ -66,3 +66,4 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
 
 # Start self-contained Next.js server
 CMD ["node", "server.js"]
+
