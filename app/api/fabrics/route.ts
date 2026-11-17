@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { rateLimit } from '@/lib/rateLimit';
-import { 
-  getPublishedFabrics, 
-  getMenuFabrics, 
-  getHomepageFabrics, 
-  getEnquiryFabrics, 
-  getCatalogFabrics 
+import {
+  getPublishedFabrics,
+  getMenuFabrics,
+  getHomepageFabrics,
+  getEnquiryFabrics,
+  getCatalogFabrics
 } from '@/lib/fabricsService';
 
 export const dynamic = 'force-dynamic';
