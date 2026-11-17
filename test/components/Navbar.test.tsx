@@ -31,4 +31,28 @@ describe('Navbar Component', () => {
     expect(screen.getAllByText(/\+91\s*94279\s*88999/i).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/viralfabrics@yahoo\.com/i).length).toBeGreaterThan(0);
   });
+
+  it('provides desktop icon-copy buttons and direct tel/mailto text links', async () => {
+    const writeTextMock = vi.fn().mockResolvedValue(undefined);
+    Object.assign(navigator, {
+      clipboard: {
+        writeText: writeTextMock,
+      },
+    });
+
+    render(<Navbar />);
+
+    const copyPhoneBtn = screen.getByLabelText(/Copy phone number/i);
+    const copyEmailBtn = screen.getByLabelText(/Copy email address/i);
+    expect(copyPhoneBtn).toBeInTheDocument();
+    expect(copyEmailBtn).toBeInTheDocument();
+
+    const phoneLinks = screen.getAllByRole('link', { name: /Call \+91 94279 88999/i });
+    expect(phoneLinks.length).toBeGreaterThan(0);
+    phoneLinks.forEach((link) => expect(link).toHaveAttribute('href', 'tel:+919427988999'));
+
+    const emailLinks = screen.getAllByRole('link', { name: /Email viralfabrics@yahoo\.com/i });
+    expect(emailLinks.length).toBeGreaterThan(0);
+    emailLinks.forEach((link) => expect(link).toHaveAttribute('href', 'mailto:viralfabrics@yahoo.com'));
+  });
 });

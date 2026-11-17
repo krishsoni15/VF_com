@@ -162,7 +162,7 @@ export function HomeHeroSection() {
           loop
           muted
           playsInline
-          preload="auto"
+          preload="metadata"
           poster="/craftsmanship-poster.jpg"
           className="w-full h-full object-cover object-center"
         >

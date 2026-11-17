@@ -529,10 +529,11 @@ export function Navbar() {
         {/* 3. RIGHT COLUMN: Phone Icon + Email Icon + Enquire Button (Mobile, Tablet, Desktop) */}
         <div className="flex-1 flex items-center justify-end gap-2 sm:gap-2.5 lg:gap-3 xl:gap-3.5 2xl:gap-6 flex-shrink-0">
 
-          {/* Phone Link (Haute Couture Minimalist Style: Naked Icon + Direct Dial Text on Desktop >= 1280px) */}
+          {/* Phone Control */}
+          {/* Mobile/Tablet (< xl): Direct Dial on click */}
           <a
             href={`tel:${COMPANY_INFO.phoneTel}`}
-            className={`flex items-center gap-1.5 sm:gap-2 p-1.5 transition-all duration-200 group/phone flex-shrink-0 cursor-pointer focus:outline-none ${
+            className={`xl:hidden flex items-center p-1.5 transition-all duration-200 group/phone flex-shrink-0 cursor-pointer focus:outline-none ${
               isTransparent
                 ? 'text-white/90 hover:text-white'
                 : 'text-slate-700 hover:text-brand-blue'
@@ -541,15 +542,56 @@ export function Navbar() {
             aria-label={`Call ${COMPANY_INFO.phoneDisplay}`}
           >
             <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[1.8] transition-transform duration-200 group-hover/phone:scale-110" />
-            <span className="text-[12px] 2xl:text-[13.5px] font-medium tracking-wide whitespace-nowrap hidden xl:inline group-hover/phone:underline underline-offset-4">
-              {COMPANY_INFO.phoneDisplay}
-            </span>
           </a>
 
-          {/* Email Link (Haute Couture Minimalist Style: Naked Icon + Direct Email Text on Desktop >= 1280px) */}
+          {/* Desktop (>= xl): Icon copies to clipboard, Text redirects/dials */}
+          <div className="hidden xl:flex items-center gap-1.5 flex-shrink-0 relative group/phoneDesk">
+            <button
+              type="button"
+              onClick={(e) => handleCopy('phone', COMPANY_INFO.phoneDisplay, e)}
+              className={`relative flex items-center justify-center p-1 rounded transition-all duration-200 focus:outline-none cursor-pointer ${
+                copiedField === 'phone'
+                  ? 'text-emerald-400 bg-emerald-500/10'
+                  : isTransparent
+                    ? 'text-white/90 hover:text-white hover:bg-white/10'
+                    : 'text-slate-700 hover:text-brand-blue hover:bg-slate-100'
+              }`}
+              title={copiedField === 'phone' ? 'Copied to clipboard!' : 'Copy phone number'}
+              aria-label="Copy phone number"
+            >
+              {copiedField === 'phone' ? (
+                <Check className="w-3.5 h-3.5 2xl:w-4 2xl:h-4 stroke-[2.2] text-emerald-400 animate-in zoom-in-75 duration-200" />
+              ) : (
+                <Phone className="w-3.5 h-3.5 2xl:w-4 2xl:h-4 stroke-[1.8] transition-transform duration-200 group-hover/phoneDesk:scale-110" />
+              )}
+
+              {/* Floating "Copied!" Tooltip */}
+              {copiedField === 'phone' && (
+                <span className="absolute -bottom-7 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-slate-900/95 text-emerald-400 text-[10px] font-semibold tracking-wider rounded shadow-lg whitespace-nowrap pointer-events-none animate-in fade-in slide-in-from-top-1 duration-200 z-50 border border-emerald-500/30">
+                  COPIED!
+                </span>
+              )}
+            </button>
+
+            <a
+              href={`tel:${COMPANY_INFO.phoneTel}`}
+              className={`text-[12px] 2xl:text-[13.5px] font-medium tracking-wide whitespace-nowrap cursor-pointer transition-colors duration-200 hover:underline underline-offset-4 focus:outline-none ${
+                isTransparent
+                  ? 'text-white/90 hover:text-white'
+                  : 'text-slate-700 hover:text-brand-blue'
+              }`}
+              title={`Call ${COMPANY_INFO.phoneDisplay}`}
+              aria-label={`Call ${COMPANY_INFO.phoneDisplay}`}
+            >
+              {COMPANY_INFO.phoneDisplay}
+            </a>
+          </div>
+
+          {/* Email Control */}
+          {/* Mobile/Tablet (< xl): Direct Mail on click */}
           <a
             href={`mailto:${COMPANY_INFO.email}`}
-            className={`flex items-center gap-1.5 sm:gap-2 p-1.5 transition-all duration-200 group/email flex-shrink-0 cursor-pointer focus:outline-none ${
+            className={`xl:hidden flex items-center p-1.5 transition-all duration-200 group/email flex-shrink-0 cursor-pointer focus:outline-none ${
               isTransparent
                 ? 'text-white/90 hover:text-white'
                 : 'text-slate-700 hover:text-brand-blue'
@@ -558,10 +600,50 @@ export function Navbar() {
             aria-label={`Email ${COMPANY_INFO.email}`}
           >
             <Mail className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[1.8] transition-transform duration-200 group-hover/email:scale-110" />
-            <span className="text-[12px] 2xl:text-[13.5px] font-medium tracking-wide whitespace-nowrap hidden xl:inline group-hover/email:underline underline-offset-4">
-              {COMPANY_INFO.email}
-            </span>
           </a>
+
+          {/* Desktop (>= xl): Icon copies to clipboard, Text redirects/opens mail */}
+          <div className="hidden xl:flex items-center gap-1.5 flex-shrink-0 relative group/emailDesk">
+            <button
+              type="button"
+              onClick={(e) => handleCopy('email', COMPANY_INFO.email, e)}
+              className={`relative flex items-center justify-center p-1 rounded transition-all duration-200 focus:outline-none cursor-pointer ${
+                copiedField === 'email'
+                  ? 'text-emerald-400 bg-emerald-500/10'
+                  : isTransparent
+                    ? 'text-white/90 hover:text-white hover:bg-white/10'
+                    : 'text-slate-700 hover:text-brand-blue hover:bg-slate-100'
+              }`}
+              title={copiedField === 'email' ? 'Copied to clipboard!' : 'Copy email address'}
+              aria-label="Copy email address"
+            >
+              {copiedField === 'email' ? (
+                <Check className="w-3.5 h-3.5 2xl:w-4 2xl:h-4 stroke-[2.2] text-emerald-400 animate-in zoom-in-75 duration-200" />
+              ) : (
+                <Mail className="w-3.5 h-3.5 2xl:w-4 2xl:h-4 stroke-[1.8] transition-transform duration-200 group-hover/emailDesk:scale-110" />
+              )}
+
+              {/* Floating "Copied!" Tooltip */}
+              {copiedField === 'email' && (
+                <span className="absolute -bottom-7 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-slate-900/95 text-emerald-400 text-[10px] font-semibold tracking-wider rounded shadow-lg whitespace-nowrap pointer-events-none animate-in fade-in slide-in-from-top-1 duration-200 z-50 border border-emerald-500/30">
+                  COPIED!
+                </span>
+              )}
+            </button>
+
+            <a
+              href={`mailto:${COMPANY_INFO.email}`}
+              className={`text-[12px] 2xl:text-[13.5px] font-medium tracking-wide whitespace-nowrap cursor-pointer transition-colors duration-200 hover:underline underline-offset-4 focus:outline-none ${
+                isTransparent
+                  ? 'text-white/90 hover:text-white'
+                  : 'text-slate-700 hover:text-brand-blue'
+              }`}
+              title={`Email ${COMPANY_INFO.email}`}
+              aria-label={`Email ${COMPANY_INFO.email}`}
+            >
+              {COMPANY_INFO.email}
+            </a>
+          </div>
 
           {/* Minimalist Cut-Corner Button (Seamless Single Closed Polygon Border, Zero Stray Line Glitch) */}
           <Link

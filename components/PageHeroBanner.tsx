@@ -250,7 +250,7 @@ export function PageHeroBanner({
             priority
           />
 
-          {/* Optional Web-Optimized Background Video */}
+          {/* Optional Web-Optimized Background Video with Progressive Byte-Range Streaming */}
           {bgVideo && (
             <video
               ref={videoRef}
@@ -260,7 +260,7 @@ export function PageHeroBanner({
               muted
               loop
               playsInline
-              preload="auto"
+              preload="metadata"
               onPlaying={() => setVideoPlaying(true)}
               className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ease-out ${
                 videoPlaying ? 'opacity-100' : 'opacity-0'
