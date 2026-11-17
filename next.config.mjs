@@ -31,6 +31,9 @@ const securityHeaders = [
 ];
 
 const nextConfig = {
+  experimental: {
+    agentUpgrade: 'security',
+  },
   output: 'standalone',
   reactStrictMode: true,
   poweredByHeader: false,
