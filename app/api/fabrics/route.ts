@@ -44,7 +44,14 @@ export async function GET(request?: NextRequest) {
         break;
     }
 
-    return NextResponse.json({ success: true, count: fabrics.length, data: fabrics });
+    return NextResponse.json(
+      { success: true, count: fabrics.length, data: fabrics },
+      {
+        headers: {
+          'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
+        },
+      }
+    );
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : 'Failed to fetch fabrics';
     return NextResponse.json(

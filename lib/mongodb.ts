@@ -29,8 +29,10 @@ export async function connectDB() {
   if (!cached.promise) {
     const opts = {
       bufferCommands: false,
-      maxPoolSize: 10,
-      serverSelectionTimeoutMS: 5000,
+      maxPoolSize: 5, // Serverless lean pool size
+      serverSelectionTimeoutMS: 3000, // Fail fast in 3s so Lambda never hangs or runs up execution costs
+      connectTimeoutMS: 3000,
+      socketTimeoutMS: 5000,
     };
 
     cached.promise = mongoose.connect(MONGODB_URI, opts).then((m) => m);

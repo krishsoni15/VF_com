@@ -30,6 +30,15 @@ export async function POST(request: Request) {
       );
     }
 
+    // Payload size check (reject payload bombs > 10KB immediately)
+    const contentLength = parseInt(request.headers.get('content-length') || '0', 10);
+    if (contentLength > 10_000) {
+      return NextResponse.json(
+        { success: false, error: 'Payload size exceeds allowable limit.' },
+        { status: 413 }
+      );
+    }
+
     const body = await request.json();
     const rawEmail = body?.email;
 

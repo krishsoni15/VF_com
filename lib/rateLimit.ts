@@ -36,6 +36,18 @@ export function rateLimit(
   const record = ipMap.get(identifier);
 
   if (!record || now > record.resetTime) {
+    // Prevent memory bloat under spoofed IP floods
+    if (ipMap.size > 2000) {
+      for (const [key, val] of ipMap.entries()) {
+        if (now > val.resetTime) ipMap.delete(key);
+      }
+      if (ipMap.size > 2000) {
+        // Drop oldest entries if still saturated
+        const keysToDelete = Array.from(ipMap.keys()).slice(0, 500);
+        keysToDelete.forEach((k) => ipMap.delete(k));
+      }
+    }
+
     ipMap.set(identifier, {
       count: 1,
       resetTime: now + windowMs,
