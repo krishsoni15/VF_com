@@ -13,7 +13,7 @@ Viral Fabrics uses **MongoDB Atlas** as its document datastore, accessed via **M
 
 ## 2. Collection: `websitefabrics`
 
-Defined in [`models/WebsiteFabric.ts`](file:///home/krish/Desktop/Projects/ViralFabrics_com-main/models/WebsiteFabric.ts).
+Defined in [`models/WebsiteFabric.ts`](../models/WebsiteFabric.ts).
 
 ### 2.1 Schema Definition
 ```typescript

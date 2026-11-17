@@ -78,7 +78,7 @@ ViralFabrics_com-main/
 
 ### 4.1 Security Vulnerabilities (Severity: HIGH)
 1. **Hardcoded MongoDB Atlas Credentials:**  
-   `lib/mongodb.ts` contained a hardcoded fallback connection string with plaintext database credentials (`krish1509soni:mqYQZaMl2qjtNkWL...`). This is an immediate credential exposure risk.
+   `lib/mongodb.ts` historically contained a hardcoded fallback connection string with plaintext database credentials (`<db_user>:<db_password>...`). This was an immediate credential exposure risk. Remediation: Replaced with strict environment variable configuration (`process.env.MONGODB_URI`) and safe static catalog fallback.
 2. **Missing Security Headers:**  
    `next.config.mjs` lacked basic HTTP security headers (`Content-Security-Policy`, `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`, `Strict-Transport-Security`).
 3. **No Rate Limiting on Lead Endpoints:**  

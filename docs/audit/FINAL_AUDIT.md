@@ -95,7 +95,7 @@ A complete documentation system consisting of 14 markdown specifications was aut
 ## 5. Automated Test Results (100% Passing)
 
 ```txt
- RUN  v5.1.0 /home/krish/Desktop/Projects/ViralFabrics_com-main
+ RUN  v5.1.0 <project-root>
 
  ✓ test/unit/companyData.test.ts (2 tests)
  ✓ test/unit/rateLimit.test.ts (3 tests)

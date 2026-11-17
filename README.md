@@ -4,7 +4,7 @@
 [![React](https://img.shields.io/badge/React-19.0.0-blue?logo=react)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7.3-blue?logo=typescript)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4.17-38bdf8?logo=tailwind-css)](https://tailwindcss.com/)
-[![Tests](https://img.shields.io/badge/Tests-22%2F22%20Passing-brightgreen?logo=vitest)](https://vitest.dev/)
+[![Tests](https://img.shields.io/badge/Tests-25%2F25%20Passing-brightgreen?logo=vitest)](https://vitest.dev/)
 [![Security](https://img.shields.io/badge/Security-Hardened%20(OWASP)-success)](docs/SECURITY.md)
 
 Premier web application and digital product showcase for **Viral Fabrics Pvt. Ltd.** &mdash; manufacturer and supplier of export-grade synthetic fabrics based in Surat, Gujarat, India. Operating high-speed continuous water-jet loom sheds producing **600,000+ meters per month** of BSY, Poly Dobby, Satin, Chiffon, Georgette, Crepe, Recycled PET, and Viscose fabrics on a Make-to-Order basis.
@@ -19,8 +19,8 @@ Premier web application and digital product showcase for **Viral Fabrics Pvt. Lt
 
 ### 1. Installation
 ```bash
-git clone <repository-url>
-cd ViralFabrics_com-main
+git clone https://github.com/vs1492/viralfabrics-website.git
+cd viralfabrics-website
 npm install
 ```
 

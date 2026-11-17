@@ -87,7 +87,7 @@ A comprehensive static analysis sweep confirmed that **zero** instances of `: an
 The Vitest test harness executes **22 automated tests** covering all mission-critical application paths:
 
 ```
- RUN  v5.1.0 /home/krish/Desktop/Projects/ViralFabrics_com-main
+ RUN  v5.1.0 <project-root>
 
  ✓ test/unit/rateLimit.test.ts (3 tests)
  ✓ test/integration/enquiryApi.test.ts (5 tests)
