@@ -3,11 +3,13 @@ import { rateLimit } from '@/lib/rateLimit';
 import { connectDB } from '@/lib/mongodb';
 import WebsiteEnquiry from '@/models/WebsiteEnquiry';
 
-// Sanitize inputs to prevent XSS and strip control characters
-function sanitizeInput(str: string): string {
-  if (typeof str !== 'string') return '';
-  return str
-    .replace(/[<>]/g, '')
+// Sanitize inputs to prevent XSS, NoSQL operator injection, and null byte exploits
+function sanitizeInput(val: unknown): string {
+  if (typeof val !== 'string') return '';
+  return val
+    .replace(/\0/g, '') // Strip null bytes
+    .replace(/[<>]/g, '') // Strip HTML tags
+    .replace(/^\$/, '') // Disallow leading MongoDB operator characters ($gt, $ne, etc.)
     .trim();
 }
 
@@ -45,6 +47,15 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
+
+    // 4. Anti-Bot Honeypot Defense: Bots auto-fill hidden inputs; real users never do
+    if (body?.website || body?.company_fax || body?.url || body?.hp_field) {
+      return NextResponse.json({
+        success: true,
+        message: 'Thank you for your enquiry. Our Surat team will contact you shortly.',
+      });
+    }
+
     const rawName = body?.name;
     const rawEmail = body?.email;
     const rawPhone = body?.phone;

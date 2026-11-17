@@ -3,9 +3,13 @@ import { rateLimit } from '@/lib/rateLimit';
 import { connectDB } from '@/lib/mongodb';
 import { Subscriber } from '@/models/Subscriber';
 
-function sanitizeInput(str: string): string {
-  if (typeof str !== 'string') return '';
-  return str.replace(/[<>]/g, '').trim();
+function sanitizeInput(val: unknown): string {
+  if (typeof val !== 'string') return '';
+  return val
+    .replace(/\0/g, '') // Strip null bytes
+    .replace(/[<>]/g, '') // Strip HTML tags
+    .replace(/^\$/, '') // Disallow leading MongoDB operator characters
+    .trim();
 }
 
 export async function POST(request: Request) {
@@ -40,6 +44,16 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
+
+    // Anti-Bot Honeypot Defense
+    if (body?.website || body?.company_fax || body?.url || body?.hp_field) {
+      return NextResponse.json({
+        success: true,
+        message: 'Thank you for subscribing to Viral Fabrics updates.',
+        data: { email: 'verified@viralfabrics.com' },
+      });
+    }
+
     const rawEmail = body?.email;
 
     if (!rawEmail) {

@@ -242,19 +242,25 @@ export async function getEnquiryFabrics(): Promise<LiveFabric[]> {
  * Fetch a single fabric by its slug
  */
 export async function getFabricBySlug(slug: string): Promise<LiveFabric | null> {
+  // Strict format check: only alphanumeric and hyphens allowed (prevents NoSQL injection / query poisoning)
+  if (!slug || typeof slug !== 'string' || !/^[a-z0-9-]+$/i.test(slug.trim())) {
+    return null;
+  }
+  const cleanSlug = slug.trim().toLowerCase();
+
   try {
     if (process.env.MONGODB_URI) {
       await connectDB();
-      const doc = await WebsiteFabric.findOne({ slug, isPublished: true }).lean();
+      const doc = await WebsiteFabric.findOne({ slug: cleanSlug, isPublished: true }).lean();
       if (doc) {
         return mapToLiveFabric(doc);
       }
     }
   } catch (error) {
-    console.warn(`[Fabrics Service] Error fetching slug "${slug}":`, error);
+    console.warn(`[Fabrics Service] Error fetching slug "${cleanSlug}":`, error);
   }
 
-  const staticFound = FABRICS.find((f) => f.slug === slug);
+  const staticFound = FABRICS.find((f) => f.slug === cleanSlug);
   if (staticFound) {
     return {
       id: staticFound.slug,
