@@ -135,26 +135,26 @@ export const Footer: React.FC = () => {
 
       {/* =================================================================
           MAIN EDITORIAL FOOTER CANVAS (AGNES TOTH MINIMALISM + AUTHENTIC VIRAL FABRICS DATA)
-             - Background: #e8f3e5 (Signature Agnes Toth pale sage linen)
-             - Typography: Cormorant Garamond serif & deep forest ink (#2e3937)
+             - Background: Pure Crisp White (bg-white)
+             - Typography: Cormorant Garamond serif & deep slate ink (text-slate-900)
              - Content strictly matching brand info:
                1. Newsletter (Headline, Email Input + Angled-Cut Subscribe Button, Subtitle)
                2. Quick Links (Home, About Us, Fabrics, Network, Enquiry, Contact Us)
                3. Contact Details (Address with Google Maps link & Copy, Phone with Copy, Email with Copy)
                4. Bottom Bar (Copyright, Brand Logo, Surat Est. 2012, High-Speed Looms Heritage)
           ================================================================= */}
-      <div className="relative bg-[#e8f3e5] text-[#2e3937] pt-10 sm:pt-12 md:pt-14 lg:pt-24 pb-10 sm:pb-12 md:pb-16 border-t border-[#2e3937]/10">
+      <div className="relative bg-white text-slate-900 pt-10 sm:pt-12 md:pt-14 lg:pt-24 pb-10 sm:pb-12 md:pb-16 border-t border-slate-200">
 
         <div className="max-w-[1720px] mx-auto px-5 sm:px-8 lg:px-14">
 
           {/* Top Grid: Newsletter (Left/Top) + Authentic Navigation & Contact (Right/Bottom) */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 lg:gap-14 xl:gap-16 pb-10 sm:pb-14 lg:pb-20 border-b border-[#2e3937]/15">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 lg:gap-14 xl:gap-16 pb-10 sm:pb-14 lg:pb-20 border-b border-slate-200">
 
             {/* NEWSLETTER MODULE */}
             <div className="md:col-span-6 lg:col-span-6 space-y-4 sm:space-y-5">
 
-              {/* Agnes Toth Editorial Headline */}
-              <h2 className="font-heading font-light text-[26px] sm:text-[34px] lg:text-[42px] leading-[1.15] text-[#2e3937] tracking-tight max-w-[500px]">
+              {/* Editorial Headline */}
+              <h2 className="font-heading font-light text-[26px] sm:text-[34px] lg:text-[42px] leading-[1.15] text-slate-900 tracking-tight max-w-[500px]">
                 Be the first to know when a new weave exists.
               </h2>
 
@@ -171,14 +171,14 @@ export const Footer: React.FC = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Your Email Address"
                     required
-                    className="flex-1 min-w-0 h-11 sm:h-12 bg-transparent border border-[#2e3937] rounded-none px-3.5 sm:px-4 text-[13.5px] sm:text-[14px] font-sans text-[#2e3937] placeholder-[#2e3937]/65 focus:outline-none focus:ring-1 focus:ring-[#2e3937] transition-all"
+                    className="flex-1 min-w-0 h-11 sm:h-12 bg-slate-50/60 border border-slate-300 rounded-none px-3.5 sm:px-4 text-[13.5px] sm:text-[14px] font-sans text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-[#203a61] focus:border-[#203a61] focus:bg-white transition-all"
                   />
 
                   {/* Signature Angled-Cut Luxury Submit Button with Continuous 1px Border (Identical on Mobile & Desktop) */}
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="relative inline-flex items-center justify-center gap-1.5 sm:gap-2 h-11 sm:h-12 px-4 sm:pl-6 sm:pr-9 text-[11px] sm:text-[12px] font-semibold tracking-[0.14em] sm:tracking-[0.16em] uppercase text-white bg-gradient-to-r from-[#3b6294] via-[#4873aa] to-[#5986bf] hover:from-[#4873aa] hover:via-[#5986bf] hover:to-[#6a97ce] transition-all duration-300 group shadow-[0_2px_12px_rgba(72,115,170,0.3)] hover:shadow-[0_4px_18px_rgba(72,115,170,0.45)] hover:-translate-y-0.5 active:translate-y-0 whitespace-nowrap cursor-pointer overflow-hidden flex-shrink-0 disabled:opacity-75"
+                    className="relative inline-flex items-center justify-center gap-1.5 sm:gap-2 h-11 sm:h-12 px-4 sm:pl-6 sm:pr-9 text-[11px] sm:text-[12px] font-semibold tracking-[0.14em] sm:tracking-[0.16em] uppercase text-white bg-gradient-to-r from-[#203a61] via-[#2b4c7e] to-[#3b6294] hover:from-[#2b4c7e] hover:via-[#3b6294] hover:to-[#4873aa] transition-all duration-300 group shadow-[0_2px_12px_rgba(32,58,97,0.25)] hover:shadow-[0_4px_18px_rgba(32,58,97,0.35)] hover:-translate-y-0.5 active:translate-y-0 whitespace-nowrap cursor-pointer overflow-hidden flex-shrink-0 disabled:opacity-75"
                     style={{
                       clipPath: 'polygon(0 0, 100% 0, 89% 100%, 0 100%)',
                     }}
@@ -212,7 +212,7 @@ export const Footer: React.FC = () => {
                 </div>
 
                 {subscribed && subscribeMsg && (
-                  <div className="flex items-center gap-2 text-[#2e3937] text-[13px] font-medium pt-1 animate-fade-in">
+                  <div className="flex items-center gap-2 text-slate-800 text-[13px] font-medium pt-1 animate-fade-in">
                     <Check className="w-4 h-4 text-emerald-600 stroke-[2.2]" />
                     <span>{subscribeMsg}</span>
                   </div>
@@ -225,7 +225,7 @@ export const Footer: React.FC = () => {
               </form>
 
               {/* Newsletter Subtitle (Crisp & Visible on Mobile, Tablet & Desktop) */}
-              <p className="text-[12.5px] sm:text-[13px] text-[#707c7a] font-light max-w-sm pt-0.5">
+              <p className="text-[12.5px] sm:text-[13px] text-slate-500 font-light max-w-sm pt-0.5">
                 Subscribe to our newsletter for regular updates.
               </p>
             </div>
@@ -235,17 +235,17 @@ export const Footer: React.FC = () => {
 
               {/* Column 1: Quick Links */}
               <div className="space-y-3.5 sm:space-y-4">
-                <h3 className="font-heading text-[17px] sm:text-[19px] font-normal text-[#2e3937] tracking-wide">
+                <h3 className="font-heading text-[17px] sm:text-[19px] font-normal text-slate-900 tracking-wide">
                   Quick Links
                 </h3>
-                <ul className="space-y-2 sm:space-y-2.5 text-[13.5px] sm:text-[14.5px] font-sans text-[#707c7a] font-light">
+                <ul className="space-y-2 sm:space-y-2.5 text-[13.5px] sm:text-[14.5px] font-sans text-slate-600 font-light">
                   <li>
-                    <Link href="/" className="hover:text-[#2e3937] transition-colors">
+                    <Link href="/" className="hover:text-[#203a61] transition-colors">
                       Home
                     </Link>
                   </li>
                   <li>
-                    <Link href="/about-us" className="hover:text-[#2e3937] transition-colors">
+                    <Link href="/about-us" className="hover:text-[#203a61] transition-colors">
                       About Us
                     </Link>
                   </li>
@@ -253,19 +253,19 @@ export const Footer: React.FC = () => {
                   {/* Fabrics with Smooth Expandable Sub-Menu */}
                   <li ref={footerFabricsRef} className="space-y-1.5">
                     <div className="flex items-center gap-1.5">
-                      <Link href="/fabrics" className="hover:text-[#2e3937] transition-colors">
+                      <Link href="/fabrics" className="hover:text-[#203a61] transition-colors">
                         Fabrics
                       </Link>
                       <button
                         type="button"
                         onClick={() => setFooterFabricsOpen((prev) => !prev)}
-                        className="p-1 -m-1 text-[#707c7a] hover:text-[#2e3937] transition-colors cursor-pointer focus:outline-none"
+                        className="p-1 -m-1 text-slate-500 hover:text-[#203a61] transition-colors cursor-pointer focus:outline-none"
                         aria-expanded={footerFabricsOpen}
                         aria-label="Toggle Fabrics Sub-Menu"
                       >
                         <ChevronDown
                           className={`w-3.5 h-3.5 stroke-[2] transition-transform duration-300 ${
-                            footerFabricsOpen ? 'rotate-180 text-[#375785]' : ''
+                            footerFabricsOpen ? 'rotate-180 text-[#203a61]' : ''
                           }`}
                         />
                       </button>
@@ -276,13 +276,13 @@ export const Footer: React.FC = () => {
                         footerFabricsOpen ? 'max-h-[500px] opacity-100 pt-1 pb-2' : 'max-h-0 opacity-0'
                       }`}
                     >
-                      <div className="pl-2.5 border-l-2 border-[#375785]/35 space-y-1.5 my-1">
+                      <div className="pl-2.5 border-l-2 border-[#203a61]/30 space-y-1.5 my-1">
                         <ul className="space-y-1 text-[12px] font-sans">
                           {footerFabrics.map((fabric) => (
                             <li key={fabric.slug}>
                               <Link
                                 href={`/fabrics/${fabric.slug}`}
-                                className="text-[#707c7a] hover:text-[#375785] transition-colors block truncate"
+                                className="text-slate-600 hover:text-[#203a61] transition-colors block truncate"
                                 title={fabric.title}
                               >
                                 {fabric.title}
@@ -290,10 +290,10 @@ export const Footer: React.FC = () => {
                             </li>
                           ))}
                         </ul>
-                        <div className="pt-1 border-t border-[#2e3937]/10">
+                        <div className="pt-1 border-t border-slate-200">
                           <Link
                             href="/fabrics"
-                            className="inline-flex items-center gap-1 text-[11px] font-semibold tracking-[0.12em] uppercase text-[#375785] hover:underline"
+                            className="inline-flex items-center gap-1 text-[11px] font-semibold tracking-[0.12em] uppercase text-[#203a61] hover:underline"
                           >
                             <span>Explore All</span>
                             <ArrowRight className="w-2.5 h-2.5" />
@@ -304,17 +304,17 @@ export const Footer: React.FC = () => {
                   </li>
 
                   <li>
-                    <Link href="/network" className="hover:text-[#2e3937] transition-colors">
+                    <Link href="/network" className="hover:text-[#203a61] transition-colors">
                       Network
                     </Link>
                   </li>
                   <li>
-                    <Link href="/enquiry" className="hover:text-[#2e3937] transition-colors">
+                    <Link href="/enquiry" className="hover:text-[#203a61] transition-colors">
                       Enquiry
                     </Link>
                   </li>
                   <li>
-                    <Link href="/contact-us" className="hover:text-[#2e3937] transition-colors">
+                    <Link href="/contact-us" className="hover:text-[#203a61] transition-colors">
                       Contact Us
                     </Link>
                   </li>
@@ -323,10 +323,10 @@ export const Footer: React.FC = () => {
 
               {/* Column 2: Contact Details (Address, Phone, Email with Instant Copy & Direct Action) */}
               <div className="space-y-3.5 sm:space-y-4">
-                <h3 className="font-heading text-[17px] sm:text-[19px] font-normal text-[#2e3937] tracking-wide">
+                <h3 className="font-heading text-[17px] sm:text-[19px] font-normal text-slate-900 tracking-wide">
                   Contact Details
                 </h3>
-                <div className="space-y-3 sm:space-y-3.5 text-[12px] sm:text-[14px] font-sans text-[#707c7a] font-light leading-relaxed">
+                <div className="space-y-3 sm:space-y-3.5 text-[12px] sm:text-[14px] font-sans text-slate-600 font-light leading-relaxed">
 
                   {/* Address with MapPin Icon, Copy & Google Maps Redirection */}
                   <div className="flex items-start gap-1.5 sm:gap-2 group/address pt-0.5">
@@ -340,7 +340,7 @@ export const Footer: React.FC = () => {
                       {copiedField === 'address' ? (
                         <Check className="w-4 h-4 text-emerald-600 stroke-[2.4]" />
                       ) : (
-                        <MapPin className="w-4 h-4 text-[#2e3937] stroke-[1.8] flex-shrink-0 transition-colors group-hover/copy:text-[#375785]" />
+                        <MapPin className="w-4 h-4 text-slate-700 stroke-[1.8] flex-shrink-0 transition-colors group-hover/copy:text-[#203a61]" />
                       )}
                       <span className={`absolute -top-7 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded text-[10px] font-sans font-medium whitespace-nowrap shadow-md pointer-events-none transition-all duration-200 z-50 ${copiedField === 'address' ? 'bg-emerald-600 text-white opacity-100' : 'bg-slate-900/90 text-white opacity-0 group-hover/copy:opacity-100'}`}>
                         {copiedField === 'address' ? 'Copied!' : 'Copy'}
@@ -351,12 +351,12 @@ export const Footer: React.FC = () => {
                       href={googleMapsUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="space-y-0.5 group/addr block hover:text-[#2e3937] transition-colors cursor-pointer text-[12px] sm:text-[13.5px] leading-snug"
+                      className="space-y-0.5 group/addr block hover:text-slate-900 transition-colors cursor-pointer text-[12px] sm:text-[13.5px] leading-snug"
                       title="Click to view location in Google Maps"
                     >
-                      <p className="font-medium text-[#2e3937] tracking-wider text-[12px] sm:text-[13.5px] uppercase flex items-center gap-1">
+                      <p className="font-medium text-slate-900 tracking-wider text-[12px] sm:text-[13.5px] uppercase flex items-center gap-1">
                         <span>VIRAL FABRICS</span>
-                        <ArrowUpRight className="w-3 h-3 text-[#375785] opacity-0 group-hover/addr:opacity-100 transition-opacity stroke-[2]" />
+                        <ArrowUpRight className="w-3 h-3 text-[#203a61] opacity-0 group-hover/addr:opacity-100 transition-opacity stroke-[2]" />
                       </p>
                       <p>Plot 37, 38, Krishna Industrial Society,</p>
                       <p>Opposite Umiya Residency, Near Milan Point,</p>
@@ -377,7 +377,7 @@ export const Footer: React.FC = () => {
                       {copiedField === 'phone' ? (
                         <Check className="w-4 h-4 text-emerald-600 stroke-[2.4]" />
                       ) : (
-                        <Phone className="w-4 h-4 text-[#2e3937] stroke-[1.8] flex-shrink-0 transition-colors group-hover/copy:text-[#375785]" />
+                        <Phone className="w-4 h-4 text-slate-700 stroke-[1.8] flex-shrink-0 transition-colors group-hover/copy:text-[#203a61]" />
                       )}
                       <span className={`absolute -top-7 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded text-[10px] font-sans font-medium whitespace-nowrap shadow-md pointer-events-none transition-all duration-200 z-50 ${copiedField === 'phone' ? 'bg-emerald-600 text-white opacity-100' : 'bg-slate-900/90 text-white opacity-0 group-hover/copy:opacity-100'}`}>
                         {copiedField === 'phone' ? 'Copied!' : 'Copy'}
@@ -385,7 +385,7 @@ export const Footer: React.FC = () => {
                     </button>
                     <a
                       href={`tel:${COMPANY_INFO.phoneTel}`}
-                      className="text-[#2e3937] font-medium hover:underline hover:text-[#375785] transition-colors tracking-tight text-[12.5px] sm:text-[14px]"
+                      className="text-slate-900 font-medium hover:underline hover:text-[#203a61] transition-colors tracking-tight text-[12.5px] sm:text-[14px]"
                       title="Click to dial directly"
                     >
                       {COMPANY_INFO.phoneDisplay}
@@ -404,7 +404,7 @@ export const Footer: React.FC = () => {
                       {copiedField === 'email' ? (
                         <Check className="w-4 h-4 text-emerald-600 stroke-[2.4]" />
                       ) : (
-                        <Mail className="w-4 h-4 text-[#2e3937] stroke-[1.8] flex-shrink-0 transition-colors group-hover/copy:text-[#375785]" />
+                        <Mail className="w-4 h-4 text-slate-700 stroke-[1.8] flex-shrink-0 transition-colors group-hover/copy:text-[#203a61]" />
                       )}
                       <span className={`absolute -top-7 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded text-[10px] font-sans font-medium whitespace-nowrap shadow-md pointer-events-none transition-all duration-200 z-50 ${copiedField === 'email' ? 'bg-emerald-600 text-white opacity-100' : 'bg-slate-900/90 text-white opacity-0 group-hover/copy:opacity-100'}`}>
                         {copiedField === 'email' ? 'Copied!' : 'Copy'}
@@ -412,7 +412,7 @@ export const Footer: React.FC = () => {
                     </button>
                     <a
                       href={`mailto:${COMPANY_INFO.email}`}
-                      className="text-[#2e3937] font-medium hover:underline underline-offset-2 hover:text-[#375785] transition-colors break-all text-[12px] sm:text-[13.5px]"
+                      className="text-slate-900 font-medium hover:underline underline-offset-2 hover:text-[#203a61] transition-colors break-all text-[12px] sm:text-[13.5px]"
                       title="Click to compose email"
                     >
                       {COMPANY_INFO.email}
@@ -427,7 +427,7 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* DESKTOP & TABLET BOTTOM LEGAL BAR: 3-Column Symmetrical Grid */}
-          <div className="hidden md:grid md:grid-cols-3 items-center pt-6 sm:pt-8 lg:pt-10 gap-6 text-[13px] text-[#707c7a]">
+          <div className="hidden md:grid md:grid-cols-3 items-center pt-6 sm:pt-8 lg:pt-10 gap-6 text-[13px] text-slate-500">
 
             {/* Legal Copyright */}
             <div className="text-left">
@@ -456,11 +456,11 @@ export const Footer: React.FC = () => {
             </div>
 
             {/* Right: Authentic Surat Mill & Export Heritage Data */}
-            <div className="text-right font-sans font-light text-[12.5px] text-[#707c7a] space-y-0.5">
-              <p className="tracking-wide text-[#2e3937]/90 font-medium text-[13px]">
-                Surat, Gujarat &bull; <span className="font-light italic text-[#707c7a]">Est. 2012</span>
+            <div className="text-right font-sans font-light text-[12.5px] text-slate-500 space-y-0.5">
+              <p className="tracking-wide text-slate-800 font-medium text-[13px]">
+                Surat, Gujarat &bull; <span className="font-light italic text-slate-500">Est. 2012</span>
               </p>
-              <p className="text-[11.5px] text-[#707c7a] tracking-wider uppercase">
+              <p className="text-[11.5px] text-slate-500 tracking-wider uppercase">
                 High-Speed Water-Jet Looms &bull; Export Fabrics
               </p>
             </div>
@@ -468,7 +468,7 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* MOBILE BOTTOM BAR: Centered Logo, Copyright & Heritage Line */}
-          <div className="md:hidden pt-8 pb-2 flex flex-col items-center justify-center text-center space-y-3 text-[#707c7a]">
+          <div className="md:hidden pt-8 pb-2 flex flex-col items-center justify-center text-center space-y-3 text-slate-500">
 
             {/* Centered Brand Logo */}
             <Link
@@ -485,16 +485,16 @@ export const Footer: React.FC = () => {
             </Link>
 
             {/* Copyright Notice */}
-            <p className="font-sans font-light text-[12.5px] text-[#2e3937]">
+            <p className="font-sans font-light text-[12.5px] text-slate-800">
               &copy; {new Date().getFullYear()} Viral Fabrics | All Rights Reserved.
             </p>
 
             {/* Heritage Signature Line */}
-            <div className="space-y-0.5 text-[11.5px] text-[#707c7a]">
+            <div className="space-y-0.5 text-[11.5px] text-slate-500">
               <p>
                 Surat, Gujarat &bull; Est. 2012
               </p>
-              <p className="tracking-wider uppercase text-[11px] text-[#707c7a]/85">
+              <p className="tracking-wider uppercase text-[11px] text-slate-400">
                 High-Speed Water-Jet Looms &bull; Export Fabrics
               </p>
             </div>
