@@ -265,8 +265,6 @@ export const TestimonialsSection: React.FC = () => {
     <section
       ref={sectionRef}
       id="testimonials"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
       className="relative w-full py-10 sm:py-12 lg:py-14 bg-white overflow-hidden selection:bg-[#1E5FA8] selection:text-white"
     >
       {/* =========================================================
@@ -346,6 +344,8 @@ export const TestimonialsSection: React.FC = () => {
                 <div
                   key={item.id}
                   style={cardStyle}
+                  onMouseEnter={() => setIsPaused(true)}
+                  onMouseLeave={() => setIsPaused(false)}
                   onClick={() => {
                     if (diff === -1) handlePrev();
                     if (diff === 1) handleNext();

@@ -84,6 +84,22 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'viralfabrics.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'viralfabrics-bucket.s3.ap-south-1.amazonaws.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.amazonaws.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'main.dc643n4iwffih.amplifyapp.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'main.d1u5ikdrvi7ewr.amplifyapp.com',
+      },
     ],
   },
 };

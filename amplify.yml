@@ -5,15 +5,48 @@ frontend:
       commands:
         - nvm use 20 || nvm install 20 || true
         - npm ci --legacy-peer-deps
+        # Verify environment variables are available
+        - echo "Checking environment variables..."
+        - |
+          if [ -z "$MONGODB_URI" ]; then
+            echo "⚠️ WARNING: MONGODB_URI is not set in build environment"
+            echo "This will cause the website to fall back to static data."
+          else
+            echo "✅ MONGODB_URI is set (length: ${#MONGODB_URI})"
+          fi
+        # Create .env.production file from Amplify environment variables
+        - |
+          cat > .env.production << EOF
+          MONGODB_URI=$MONGODB_URI
+          NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
+          ERP_URL=$ERP_URL
+          DATABASE_NAME=$DATABASE_NAME
+          NODE_ENV=production
+          EOF
+          echo "✅ Created .env.production file"
     build:
       commands:
+        - export MONGODB_URI="$MONGODB_URI"
+        - export NODE_ENV="production"
         - npm run build
+        # Copy .env file to standalone directory for Next.js SSR runtime
+        - |
+          if [ -f .env.production ]; then
+            if [ -d .next/standalone ]; then
+              cp .env.production .next/standalone/.env.production
+              echo "✅ Copied .env.production to standalone directory"
+            fi
+            if [ -d .next/standalone/app ]; then
+              cp .env.production .next/standalone/app/.env.production
+              echo "✅ Copied .env.production to standalone/app directory"
+            fi
+          fi
   artifacts:
     baseDirectory: .next
     files:
       - '**/*'
+      - '.env.production'
   cache:
     paths:
       - .next/cache/**/*
       - node_modules/**/*
-
