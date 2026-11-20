@@ -4,7 +4,8 @@ import type { Metadata } from 'next';
 import { getFabricBySlug, getPublishedFabrics } from '@/lib/fabricsService';
 import { FabricDetailClient } from '@/components/FabricDetailClient';
 
-export const revalidate = 300; // Incremental Static Regeneration every 5 minutes (Cached on CloudFront Edge)
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 export const dynamicParams = true; // Allow new fabrics created dynamically to render
 
 export async function generateStaticParams() {

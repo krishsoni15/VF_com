@@ -34,11 +34,13 @@ frontend:
           if [ -f .env.production ]; then
             if [ -d .next/standalone ]; then
               cp .env.production .next/standalone/.env.production
-              echo "✅ Copied .env.production to standalone directory"
+              cp .env.production .next/standalone/.env
+              echo "✅ Copied .env.production and .env to standalone directory"
             fi
             if [ -d .next/standalone/app ]; then
               cp .env.production .next/standalone/app/.env.production
-              echo "✅ Copied .env.production to standalone/app directory"
+              cp .env.production .next/standalone/app/.env
+              echo "✅ Copied .env.production and .env to standalone/app directory"
             fi
           fi
   artifacts:

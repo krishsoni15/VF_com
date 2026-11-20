@@ -6,7 +6,8 @@ import { ArrowRight } from 'lucide-react';
 import { PageHeroBanner } from '@/components/PageHeroBanner';
 import { FabricsCatalogClient } from '@/components/FabricsCatalogClient';
 
-export const revalidate = 300; // Incremental Static Regeneration every 5 minutes (Cached on CloudFront Edge)
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: 'Fabrics Portfolio | Viral Fabrics Surat - Export Synthetic Textiles',
