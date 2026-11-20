@@ -71,12 +71,17 @@ function mapToLiveFabric(doc: FabricDocumentLike): LiveFabric {
 function sortFabricsBySequence<T extends FabricDocumentLike>(docs: T[]): T[] {
   return [...docs].sort((a, b) => {
     // If menuOrder is defined and > 0, it takes highest precedence, then displayOrder
+    // If order is 0 or unassigned, treat as 0 (matching ERP MongoDB order so new additions appear at the top)
     const orderA = (typeof a.menuOrder === 'number' && a.menuOrder > 0)
       ? a.menuOrder
-      : ((typeof a.displayOrder === 'number' && a.displayOrder > 0) ? a.displayOrder : 9999);
+      : (typeof a.displayOrder === 'number' && a.displayOrder > 0)
+        ? a.displayOrder
+        : 0;
     const orderB = (typeof b.menuOrder === 'number' && b.menuOrder > 0)
       ? b.menuOrder
-      : ((typeof b.displayOrder === 'number' && b.displayOrder > 0) ? b.displayOrder : 9999);
+      : (typeof b.displayOrder === 'number' && b.displayOrder > 0)
+        ? b.displayOrder
+        : 0;
 
     if (orderA !== orderB) {
       return orderA - orderB;
@@ -103,7 +108,7 @@ function getCached<T>(key: string): T | null {
   return null;
 }
 
-function setCached<T>(key: string, data: T, ttlSeconds: number = 60): void {
+function setCached<T>(key: string, data: T, ttlSeconds: number = 10): void {
   if (memoryCache.size > 200) {
     const now = Date.now();
     for (const [k, v] of memoryCache.entries()) {
@@ -133,7 +138,7 @@ export async function getPublishedFabrics(): Promise<LiveFabric[]> {
 
       if (docs && docs.length > 0) {
         result = sortFabricsBySequence(docs).map(mapToLiveFabric);
-        setCached('fabrics_published', result, 60);
+        setCached('fabrics_published', result, 10);
         return result;
       }
     }
@@ -167,7 +172,7 @@ export async function getPublishedFabrics(): Promise<LiveFabric[]> {
     menuOrder: i + 1,
   }));
 
-  setCached('fabrics_published', result, 60);
+  setCached('fabrics_published', result, 10);
   return result;
 }
 
@@ -191,7 +196,7 @@ export async function getCatalogFabrics(): Promise<LiveFabric[]> {
 
       if (docs && docs.length > 0) {
         result = sortFabricsBySequence(docs).map(mapToLiveFabric);
-        setCached('fabrics_catalog', result, 60);
+        setCached('fabrics_catalog', result, 10);
         return result;
       }
     }
@@ -201,7 +206,7 @@ export async function getCatalogFabrics(): Promise<LiveFabric[]> {
 
   const all = await getPublishedFabrics();
   result = all.filter((f) => f.showInCatalog !== false);
-  setCached('fabrics_catalog', result, 60);
+  setCached('fabrics_catalog', result, 10);
   return result;
 }
 
@@ -225,7 +230,7 @@ export async function getMenuFabrics(): Promise<LiveFabric[]> {
 
       if (docs && docs.length > 0) {
         result = sortFabricsBySequence(docs).map(mapToLiveFabric);
-        setCached('fabrics_menu', result, 60);
+        setCached('fabrics_menu', result, 10);
         return result;
       }
     }
@@ -235,7 +240,7 @@ export async function getMenuFabrics(): Promise<LiveFabric[]> {
 
   const all = await getPublishedFabrics();
   result = all.filter((f) => f.showInMenu !== false);
-  setCached('fabrics_menu', result, 60);
+  setCached('fabrics_menu', result, 10);
   return result;
 }
 
@@ -259,7 +264,7 @@ export async function getHomepageFabrics(): Promise<LiveFabric[]> {
 
       if (docs && docs.length > 0) {
         result = sortFabricsBySequence(docs).map(mapToLiveFabric);
-        setCached('fabrics_homepage', result, 60);
+        setCached('fabrics_homepage', result, 10);
         return result;
       }
     }
@@ -269,7 +274,7 @@ export async function getHomepageFabrics(): Promise<LiveFabric[]> {
 
   const all = await getPublishedFabrics();
   result = all.filter((f) => f.showOnHomepage !== false);
-  setCached('fabrics_homepage', result, 60);
+  setCached('fabrics_homepage', result, 10);
   return result;
 }
 
@@ -293,7 +298,7 @@ export async function getEnquiryFabrics(): Promise<LiveFabric[]> {
 
       if (docs && docs.length > 0) {
         result = sortFabricsBySequence(docs).map(mapToLiveFabric);
-        setCached('fabrics_enquiry', result, 60);
+        setCached('fabrics_enquiry', result, 10);
         return result;
       }
     }
@@ -303,7 +308,7 @@ export async function getEnquiryFabrics(): Promise<LiveFabric[]> {
 
   const all = await getPublishedFabrics();
   result = all.filter((f) => f.showInEnquiry !== false);
-  setCached('fabrics_enquiry', result, 60);
+  setCached('fabrics_enquiry', result, 10);
   return result;
 }
 
@@ -326,7 +331,7 @@ export async function getFabricBySlug(slug: string): Promise<LiveFabric | null> 
       const doc = await WebsiteFabric.findOne({ slug: cleanSlug, isPublished: true }).lean();
       if (doc) {
         const mapped = mapToLiveFabric(doc);
-        setCached(cacheKey, mapped, 60);
+        setCached(cacheKey, mapped, 10);
         return mapped;
       }
     }
@@ -359,10 +364,10 @@ export async function getFabricBySlug(slug: string): Promise<LiveFabric | null> 
       displayOrder: 1,
       menuOrder: 1,
     };
-    setCached(cacheKey, fallback, 60);
+    setCached(cacheKey, fallback, 10);
     return fallback;
   }
 
-  setCached(cacheKey, null, 60);
+  setCached(cacheKey, null, 10);
   return null;
 }

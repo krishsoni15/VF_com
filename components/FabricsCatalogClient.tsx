@@ -18,14 +18,37 @@ import {
 } from 'lucide-react';
 import type { FabricItem } from '@/data/fabrics';
 import type { LiveFabric } from '@/types';
+import { fetchPublishedFabrics } from '@/services/fabricsApi';
 
 interface FabricsCatalogClientProps {
   fabrics: (FabricItem | LiveFabric)[];
 }
 
-export function FabricsCatalogClient({ fabrics }: FabricsCatalogClientProps) {
+export function FabricsCatalogClient({ fabrics: initialFabrics }: FabricsCatalogClientProps) {
+  const [fabrics, setFabrics] = useState<(FabricItem | LiveFabric)[]>(initialFabrics);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedFabricForEnquiry, setSelectedFabricForEnquiry] = useState<FabricItem | LiveFabric | null>(null);
+
+  // Sync state if initial server props update
+  useEffect(() => {
+    if (initialFabrics && initialFabrics.length > 0) {
+      setFabrics(initialFabrics);
+    }
+  }, [initialFabrics]);
+
+  // Client-side dynamic hydrate: fetch latest catalog fabrics from API immediately on mount
+  useEffect(() => {
+    let isMounted = true;
+    fetchPublishedFabrics('catalog').then((live) => {
+      if (isMounted && Array.isArray(live) && live.length > 0) {
+        setFabrics(live);
+      }
+    });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   // Close modal on ESC key
   useEffect(() => {
