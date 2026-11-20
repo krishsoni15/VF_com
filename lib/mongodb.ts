@@ -1,7 +1,5 @@
 import mongoose from 'mongoose';
 
-const MONGODB_URI = process.env.MONGODB_URI;
-
 interface MongooseCache {
   conn: typeof mongoose | null;
   promise: Promise<typeof mongoose> | null;
@@ -18,7 +16,8 @@ if (!global.mongooseCache) {
 }
 
 export async function connectDB() {
-  if (!MONGODB_URI) {
+  const uri = process.env.MONGODB_URI;
+  if (!uri) {
     throw new Error('MONGODB_URI environment variable is not configured. Falling back to static data.');
   }
 
@@ -30,12 +29,12 @@ export async function connectDB() {
     const opts = {
       bufferCommands: false,
       maxPoolSize: 5, // Serverless lean pool size
-      serverSelectionTimeoutMS: 3000, // Fail fast in 3s so Lambda never hangs or runs up execution costs
-      connectTimeoutMS: 3000,
-      socketTimeoutMS: 5000,
+      serverSelectionTimeoutMS: 5000,
+      connectTimeoutMS: 5000,
+      socketTimeoutMS: 10000,
     };
 
-    cached.promise = mongoose.connect(MONGODB_URI, opts).then((m) => m);
+    cached.promise = mongoose.connect(uri, opts).then((m) => m);
   }
 
   try {
