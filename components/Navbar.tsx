@@ -648,7 +648,9 @@ export function Navbar() {
           {/* Minimalist Cut-Corner Button (Seamless Single Closed Polygon Border, Zero Stray Line Glitch) */}
           <Link
             href="/enquiry"
-            className={`relative hidden sm:inline-flex items-center justify-center h-8 sm:h-8.5 lg:h-9 px-4 sm:px-4.5 lg:px-5.5 text-[10px] sm:text-[10.5px] lg:text-[11px] font-semibold tracking-[0.18em] uppercase whitespace-nowrap transition-all duration-300 group cursor-pointer flex-shrink-0 hover:-translate-y-0.5 active:translate-y-0 ${
+            title="Request a Fabric Sample & Enquiry"
+            aria-label="Request a Fabric Sample & Enquiry"
+            className={`relative hidden sm:inline-flex items-center justify-center h-8 sm:h-8.5 lg:h-9 px-3.5 sm:px-4 lg:px-5 text-[10px] sm:text-[10.5px] lg:text-[11px] font-semibold tracking-[0.16em] uppercase whitespace-nowrap transition-all duration-300 group cursor-pointer flex-shrink-0 hover:-translate-y-0.5 active:translate-y-0 ${
               isTransparent
                 ? 'text-white'
                 : 'text-[#203a61] hover:text-white'
@@ -683,7 +685,8 @@ export function Navbar() {
               aria-hidden="true"
             />
 
-            <span className="relative z-10 font-sans">ENQUIRE</span>
+            <span className="relative z-10 font-sans hidden 2xl:inline">REQUEST A SAMPLE</span>
+            <span className="relative z-10 font-sans 2xl:hidden">REQUEST SAMPLE</span>
           </Link>
         </div>
 
@@ -908,7 +911,7 @@ export function Navbar() {
                 className="absolute top-0 -left-full w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12 pointer-events-none group-hover:translate-x-[250%] transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]"
                 aria-hidden="true"
               />
-              <span className="relative z-10 font-sans">ENQUIRE NOW</span>
+              <span className="relative z-10 font-sans">REQUEST A SAMPLE</span>
               <ArrowRight className="relative z-10 w-3.5 h-3.5 stroke-[2.2] transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1" />
             </Link>
           </div>

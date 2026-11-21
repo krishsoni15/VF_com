@@ -212,7 +212,7 @@ export function HomeHeroSection() {
           </h1>
 
           <div
-            className={`flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2 sm:pt-3 transition-all duration-[1350ms] ease-[cubic-bezier(0.16,1,0.3,1)] delay-[280ms] ${
+            className={`flex flex-col lg:flex-row lg:items-center justify-between gap-5 pt-2 sm:pt-3 transition-all duration-[1350ms] ease-[cubic-bezier(0.16,1,0.3,1)] delay-[280ms] ${
               isLoaded ? 'opacity-100 blur-0 translate-y-0' : 'opacity-0 blur-[8px] translate-y-3'
             }`}
           >
@@ -220,37 +220,73 @@ export function HomeHeroSection() {
               Manufacturer and Supplier of all types of Export Fabrics.
             </p>
 
-            <Link
-              href="/fabrics"
-              className="relative inline-flex items-center gap-3 h-10 sm:h-11 pl-6 pr-8 text-[11px] sm:text-[11.5px] font-medium tracking-[0.2em] uppercase text-white bg-white/[0.06] hover:bg-white/[0.16] backdrop-blur-[8px] transition-all duration-300 group cursor-pointer self-start sm:self-auto whitespace-nowrap overflow-hidden hover:-translate-y-0.5 active:translate-y-0"
-              style={{
-                clipPath: 'polygon(0 0, 100% 0, 89% 100%, 0 100%)',
-              }}
-            >
-              <svg
-                className="absolute inset-0 w-full h-full pointer-events-none"
-                viewBox="0 0 100 100"
-                preserveAspectRatio="none"
-                aria-hidden="true"
+            <div className="flex flex-wrap items-center gap-3 sm:gap-3.5 self-start lg:self-auto">
+              {/* Primary Action: REQUEST A SAMPLE */}
+              <Link
+                href="/enquiry"
+                className="relative inline-flex items-center gap-2.5 h-10 sm:h-11 pl-5 sm:pl-6 pr-7 sm:pr-8 text-[11px] sm:text-[11.5px] font-semibold tracking-[0.2em] uppercase text-white bg-gradient-to-r from-[#1665C1] via-[#10529E] to-[#0A3D78] hover:from-[#1E74DC] hover:via-[#1665C1] hover:to-[#0E52A0] shadow-[0_4px_20px_rgba(22,101,193,0.4)] transition-all duration-300 group cursor-pointer whitespace-nowrap overflow-hidden hover:-translate-y-0.5 active:translate-y-0"
+                style={{
+                  clipPath: 'polygon(0 0, 100% 0, 89% 100%, 0 100%)',
+                }}
               >
-                <polygon
-                  points="0.5,0.5 99.5,0.5 89,99.5 0.5,99.5"
-                  fill="none"
-                  stroke="rgba(255,255,255,0.75)"
-                  strokeWidth="1"
-                  vectorEffect="non-scaling-stroke"
-                  strokeLinejoin="miter"
+                <svg
+                  className="absolute inset-0 w-full h-full pointer-events-none"
+                  viewBox="0 0 100 100"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <polygon
+                    points="0.5,0.5 99.5,0.5 89,99.5 0.5,99.5"
+                    fill="none"
+                    stroke="rgba(255,255,255,0.4)"
+                    strokeWidth="1"
+                    vectorEffect="non-scaling-stroke"
+                    strokeLinejoin="miter"
+                  />
+                </svg>
+
+                <span
+                  className="absolute top-0 -left-full w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12 pointer-events-none group-hover:translate-x-[250%] transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                  aria-hidden="true"
                 />
-              </svg>
 
-              <span
-                className="absolute top-0 -left-full w-full h-full bg-gradient-to-r from-transparent via-white/45 to-transparent -skew-x-12 pointer-events-none group-hover:translate-x-[250%] transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]"
-                aria-hidden="true"
-              />
+                <span className="font-sans relative z-10">REQUEST A SAMPLE</span>
+                <ArrowRight className="relative z-10 w-3.5 h-3.5 stroke-[2.2] transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1" />
+              </Link>
 
-              <span className="font-sans relative z-10">EXPLORE OUR PRODUCTS</span>
-              <ArrowRight className="relative z-10 w-3.5 h-3.5 stroke-[2] transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1.5" />
-            </Link>
+              {/* Secondary Action: EXPLORE OUR PRODUCTS */}
+              <Link
+                href="/fabrics"
+                className="relative inline-flex items-center gap-3 h-10 sm:h-11 pl-5 sm:pl-6 pr-7 sm:pr-8 text-[11px] sm:text-[11.5px] font-medium tracking-[0.2em] uppercase text-white bg-white/[0.06] hover:bg-white/[0.16] backdrop-blur-[8px] transition-all duration-300 group cursor-pointer whitespace-nowrap overflow-hidden hover:-translate-y-0.5 active:translate-y-0"
+                style={{
+                  clipPath: 'polygon(0 0, 100% 0, 89% 100%, 0 100%)',
+                }}
+              >
+                <svg
+                  className="absolute inset-0 w-full h-full pointer-events-none"
+                  viewBox="0 0 100 100"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <polygon
+                    points="0.5,0.5 99.5,0.5 89,99.5 0.5,99.5"
+                    fill="none"
+                    stroke="rgba(255,255,255,0.75)"
+                    strokeWidth="1"
+                    vectorEffect="non-scaling-stroke"
+                    strokeLinejoin="miter"
+                  />
+                </svg>
+
+                <span
+                  className="absolute top-0 -left-full w-full h-full bg-gradient-to-r from-transparent via-white/45 to-transparent -skew-x-12 pointer-events-none group-hover:translate-x-[250%] transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                  aria-hidden="true"
+                />
+
+                <span className="font-sans relative z-10">EXPLORE OUR PRODUCTS</span>
+                <ArrowRight className="relative z-10 w-3.5 h-3.5 stroke-[2] transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1.5" />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
