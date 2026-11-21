@@ -4,7 +4,7 @@ import ContactClient from './ContactClient';
 
 export const metadata: Metadata = {
   title: 'Contact Surat Facility | Viral Fabrics Surat - Manufacturing Plant & Sales',
-  description: 'Contact Viral Fabrics Pvt. Ltd. at Krishna Industrial Society, Bamroli, Surat. Direct Phone: +91 94279 88999, Email: viralfabrics@yahoo.com.',
+  description: 'Contact Viral Fabrics at Krishna Industrial Society, Bamroli, Surat. Direct Phone: +91 94279 88999, Email: viralfabrics@yahoo.com.',
   alternates: {
     canonical: 'https://viralfabrics.com/contact-us',
   },

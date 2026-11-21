@@ -39,7 +39,7 @@ export const Footer: React.FC = () => {
   }, []);
 
   const fullAddress = `${COMPANY_INFO.name}, Plot 37, 38, Krishna Industrial Society, Opposite Umiya Residency, Near Milan Point, Bamroli – Vadod Road, Bamroli, Pandesara, Surat, Gujarat 394210, India`;
-  const googleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=VIRAL+FABRICS+PVT+LTD+Plot+37+38+Krishna+Industrial+Society+Bamroli+Surat+394210';
+  const googleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=VIRAL+FABRICS+Plot+37+38+Krishna+Industrial+Society+Bamroli+Surat+394210';
 
   const handleCopy = async (type: 'phone' | 'email' | 'address', text: string, e?: React.MouseEvent) => {
     if (e) {

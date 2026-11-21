@@ -94,7 +94,7 @@ export default async function FabricDetailPage({
         },
         manufacturer: {
           '@type': 'Organization',
-          name: 'Viral Fabrics Pvt. Ltd.',
+          name: 'Viral Fabrics',
           url: 'https://viralfabrics.com',
         },
         category: 'Textiles & Export Fabrics',
@@ -106,7 +106,7 @@ export default async function FabricDetailPage({
           itemCondition: 'https://schema.org/NewCondition',
           seller: {
             '@type': 'Organization',
-            name: 'Viral Fabrics Pvt. Ltd.',
+            name: 'Viral Fabrics',
           },
         },
       },

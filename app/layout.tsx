@@ -111,7 +111,7 @@ export default function RootLayout({
                   '@type': 'Organization',
                   '@id': 'https://viralfabrics.com/#organization',
                   name: 'Viral Fabrics',
-                  legalName: 'Viral Fabrics Pvt. Ltd.',
+                  legalName: 'Viral Fabrics',
                   url: 'https://viralfabrics.com',
                   logo: 'https://viralfabrics.com/assets/brand/logo.png',
                   founder: {

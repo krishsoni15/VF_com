@@ -1,5 +1,5 @@
 export const COMPANY_INFO = {
-  name: 'Viral Fabrics Pvt. Ltd.',
+  name: 'Viral Fabrics',
   brandName: 'Viral Fabrics',
   established: 2012,
   founder: 'Mr. Viral A. Patel',
@@ -20,7 +20,7 @@ export const COMPANY_INFO = {
     pin: '394210',
     country: 'India'
   },
-  mapsUrl: 'https://maps.google.com/maps?q=VIRAL%20FABRICS%20PVT.%20LTD%20Plot%2037%2C38%20%2C%20Krishna%20Industrial.%20Society%2C%20Opposite%20Umiya%20Residency%2C%20Near%20Milan%20Point%2C%20Bamroli%20-%20Vadod%20Road%2C%20Bamroli%2C%20Pandesara%2C%20Surat.%20Pin%20%3A%20394210&t=m&z=10&output=embed&iwloc=near',
+  mapsUrl: 'https://maps.google.com/maps?q=VIRAL%20FABRICS%20Plot%2037%2C38%20%2C%20Krishna%20Industrial.%20Society%2C%20Opposite%20Umiya%20Residency%2C%20Near%20Milan%20Point%2C%20Bamroli%20-%20Vadod%20Road%2C%20Bamroli%2C%20Pandesara%2C%20Surat.%20Pin%20%3A%20394210&t=m&z=10&output=embed&iwloc=near',
   qualityStages: [
     {
       level: 'At Greige Level',

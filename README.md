@@ -9,7 +9,7 @@
 [![AWS Amplify](https://img.shields.io/badge/AWS%20Amplify-Cost%20Protected-FF9900?logo=awsamplify)](amplify.yml)
 [![Security](https://img.shields.io/badge/Security-Hardened%20(OWASP)-success)](docs/SECURITY.md)
 
-Premier web application and digital product showcase for **Viral Fabrics Pvt. Ltd.** &mdash; manufacturer and supplier of export-grade synthetic fabrics based in Surat, Gujarat, India. Operating high-speed continuous water-jet loom sheds producing **600,000+ meters per month** of BSY, Poly Dobby, Satin, Chiffon, Georgette, Crepe, Recycled PET, and Viscose fabrics on a Make-to-Order basis.
+Premier web application and digital product showcase for **Viral Fabrics** &mdash; manufacturer and supplier of export-grade synthetic fabrics based in Surat, Gujarat, India. Operating high-speed continuous water-jet loom sheds producing **600,000+ meters per month** of BSY, Poly Dobby, Satin, Chiffon, Georgette, Crepe, Recycled PET, and Viscose fabrics on a Make-to-Order basis.
 
 ---
 
@@ -124,5 +124,5 @@ Comprehensive technical specifications and engineering guides are available in t
 
 ## License & Intellectual Property
 
-&copy; 2012&ndash;2026 Viral Fabrics Pvt. Ltd. All rights reserved.  
+&copy; 2012&ndash;2026 Viral Fabrics. All rights reserved.  
 Surat, Gujarat, India.

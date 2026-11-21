@@ -32,7 +32,7 @@ The technical SEO architecture implements Next.js App Router metadata convention
 
 ### 3.1 Organization & WebSite (`app/layout.tsx`)
 Injected globally into `<head>`:
-- **`@type: Organization`**: Legal name (`Viral Fabrics Pvt. Ltd.`), founding year (2012), Surat registered address, sales contact point (+91 94279 88999, `viralfabrics@yahoo.com`), languages (English, Hindi, Gujarati), and export coverage (`IN`, `AE`, `US`, `GB`, `EU`).
+- **`@type: Organization`**: Legal name (`Viral Fabrics`), founding year (2012), Surat registered address, sales contact point (+91 94279 88999, `viralfabrics@yahoo.com`), languages (English, Hindi, Gujarati), and export coverage (`IN`, `AE`, `US`, `GB`, `EU`).
 - **`@type: WebSite`**: Master URL, publisher entity reference.
 
 ### 3.2 Product & BreadcrumbList (`app/fabrics/[slug]/page.tsx`)

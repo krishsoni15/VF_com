@@ -4,7 +4,7 @@ import { FABRICS } from '@/data/fabrics';
 
 describe('Company and Fabric Data Integrity', () => {
   it('contains valid Surat company contact details', () => {
-    expect(COMPANY_INFO.name).toBe('Viral Fabrics Pvt. Ltd.');
+    expect(COMPANY_INFO.name).toBe('Viral Fabrics');
     expect(COMPANY_INFO.phone).toMatch(/^\+91/);
     expect(COMPANY_INFO.email).toContain('@');
     expect(COMPANY_INFO.address.city).toBe('Surat');

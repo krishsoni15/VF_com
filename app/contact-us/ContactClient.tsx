@@ -52,7 +52,7 @@ export default function ContactClient() {
     const generateQrs = async () => {
       try {
         const locationTarget =
-          'https://maps.google.com/?q=VIRAL+FABRICS+PVT+LTD+Plot+37+38+Krishna+Industrial+Society+Bamroli+Surat+394210';
+          'https://maps.google.com/?q=VIRAL+FABRICS+Plot+37+38+Krishna+Industrial+Society+Bamroli+Surat+394210';
         const phoneTarget =
           'https://wa.me/919427988999?text=' +
           encodeURIComponent('Hello Viral Fabrics, I would like to inquire about fabric sourcing.');
@@ -276,7 +276,7 @@ export default function ContactClient() {
                   </span>
 
                   <h3 className="font-heading font-serif text-[20px] sm:text-[22px] font-bold text-[#113259] tracking-wider uppercase leading-snug">
-                    VIRAL FABRICS PVT. LTD.
+                    VIRAL FABRICS
                   </h3>
 
                   {/* Direct Click to Copy Address */}
@@ -633,7 +633,7 @@ export default function ContactClient() {
                 allowFullScreen={false}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="VIRAL FABRICS PVT. LTD Surat Facility Google Map"
+                title="VIRAL FABRICS Surat Facility Google Map"
                 className="w-full h-full"
               />
             </div>
