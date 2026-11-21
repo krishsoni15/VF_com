@@ -212,79 +212,49 @@ export function HomeHeroSection() {
           </h1>
 
           <div
-            className={`flex flex-col lg:flex-row lg:items-center justify-between gap-5 pt-2 sm:pt-3 transition-all duration-[1350ms] ease-[cubic-bezier(0.16,1,0.3,1)] delay-[280ms] ${
+            className={`flex flex-col lg:flex-row lg:items-center justify-between gap-5 pt-3 sm:pt-4 transition-all duration-[1350ms] ease-[cubic-bezier(0.16,1,0.3,1)] delay-[280ms] ${
               isLoaded ? 'opacity-100 blur-0 translate-y-0' : 'opacity-0 blur-[8px] translate-y-3'
             }`}
           >
-            <p className="font-sans text-white/90 text-sm sm:text-base md:text-lg font-light leading-relaxed max-w-xl drop-shadow-[0_1px_6px_rgba(0,0,0,0.5)]">
+            <p className="font-sans text-white/90 text-sm sm:text-base md:text-lg font-light leading-relaxed max-w-lg drop-shadow-[0_1px_6px_rgba(0,0,0,0.6)]">
               Manufacturer and Supplier of all types of Export Fabrics.
             </p>
 
-            <div className="flex flex-wrap items-center gap-3 sm:gap-3.5 self-start lg:self-auto">
-              {/* Primary Action: REQUEST A SAMPLE */}
+            <div className="flex flex-wrap items-center gap-3 sm:gap-3.5 self-start lg:self-auto shrink-0">
+              {/* Primary Action: REQUEST A SAMPLE (Haute-Couture Architectural Pure White) */}
               <Link
                 href="/enquiry"
-                className="relative inline-flex items-center gap-2.5 h-10 sm:h-11 pl-5 sm:pl-6 pr-7 sm:pr-8 text-[11px] sm:text-[11.5px] font-semibold tracking-[0.2em] uppercase text-white bg-gradient-to-r from-[#1665C1] via-[#10529E] to-[#0A3D78] hover:from-[#1E74DC] hover:via-[#1665C1] hover:to-[#0E52A0] shadow-[0_4px_20px_rgba(22,101,193,0.4)] transition-all duration-300 group cursor-pointer whitespace-nowrap overflow-hidden hover:-translate-y-0.5 active:translate-y-0"
+                className="relative inline-flex items-center gap-2.5 h-10 sm:h-11 px-5 sm:px-6 text-[11px] sm:text-[11.5px] font-semibold tracking-[0.18em] uppercase text-[#07192F] bg-white hover:bg-slate-100 transition-all duration-300 group cursor-pointer whitespace-nowrap overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.35)] hover:shadow-[0_8px_30px_rgba(255,255,255,0.25)] hover:-translate-y-0.5 active:translate-y-0"
                 style={{
-                  clipPath: 'polygon(0 0, 100% 0, 89% 100%, 0 100%)',
+                  clipPath: 'polygon(0 0, 100% 0, calc(100% - 12px) 100%, 0 100%)',
                 }}
               >
-                <svg
-                  className="absolute inset-0 w-full h-full pointer-events-none"
-                  viewBox="0 0 100 100"
-                  preserveAspectRatio="none"
-                  aria-hidden="true"
-                >
-                  <polygon
-                    points="0.5,0.5 99.5,0.5 89,99.5 0.5,99.5"
-                    fill="none"
-                    stroke="rgba(255,255,255,0.4)"
-                    strokeWidth="1"
-                    vectorEffect="non-scaling-stroke"
-                    strokeLinejoin="miter"
-                  />
-                </svg>
-
+                {/* Smooth Luminous Shine Sweep */}
                 <span
-                  className="absolute top-0 -left-full w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12 pointer-events-none group-hover:translate-x-[250%] transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                  className="absolute top-0 -left-full w-full h-full bg-gradient-to-r from-transparent via-black/10 to-transparent -skew-x-12 pointer-events-none group-hover:translate-x-[250%] transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]"
                   aria-hidden="true"
                 />
 
-                <span className="font-sans relative z-10">REQUEST A SAMPLE</span>
-                <ArrowRight className="relative z-10 w-3.5 h-3.5 stroke-[2.2] transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1" />
+                <span className="font-sans relative z-10 font-bold">REQUEST A SAMPLE</span>
+                <ArrowRight className="relative z-10 w-3.5 h-3.5 stroke-[2.4] text-[#07192F] transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1" />
               </Link>
 
-              {/* Secondary Action: EXPLORE OUR PRODUCTS */}
+              {/* Secondary Action: EXPLORE OUR PRODUCTS (Smoked Frosted Glass with Border) */}
               <Link
                 href="/fabrics"
-                className="relative inline-flex items-center gap-3 h-10 sm:h-11 pl-5 sm:pl-6 pr-7 sm:pr-8 text-[11px] sm:text-[11.5px] font-medium tracking-[0.2em] uppercase text-white bg-white/[0.06] hover:bg-white/[0.16] backdrop-blur-[8px] transition-all duration-300 group cursor-pointer whitespace-nowrap overflow-hidden hover:-translate-y-0.5 active:translate-y-0"
+                className="relative inline-flex items-center gap-2.5 h-10 sm:h-11 px-5 sm:px-6 text-[11px] sm:text-[11.5px] font-medium tracking-[0.18em] uppercase text-white bg-black/35 hover:bg-black/55 border border-white/35 hover:border-white/70 backdrop-blur-md transition-all duration-300 group cursor-pointer whitespace-nowrap overflow-hidden hover:-translate-y-0.5 active:translate-y-0"
                 style={{
-                  clipPath: 'polygon(0 0, 100% 0, 89% 100%, 0 100%)',
+                  clipPath: 'polygon(0 0, 100% 0, calc(100% - 12px) 100%, 0 100%)',
                 }}
               >
-                <svg
-                  className="absolute inset-0 w-full h-full pointer-events-none"
-                  viewBox="0 0 100 100"
-                  preserveAspectRatio="none"
-                  aria-hidden="true"
-                >
-                  <polygon
-                    points="0.5,0.5 99.5,0.5 89,99.5 0.5,99.5"
-                    fill="none"
-                    stroke="rgba(255,255,255,0.75)"
-                    strokeWidth="1"
-                    vectorEffect="non-scaling-stroke"
-                    strokeLinejoin="miter"
-                  />
-                </svg>
-
+                {/* Smooth Luminous Shine Sweep */}
                 <span
-                  className="absolute top-0 -left-full w-full h-full bg-gradient-to-r from-transparent via-white/45 to-transparent -skew-x-12 pointer-events-none group-hover:translate-x-[250%] transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                  className="absolute top-0 -left-full w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 pointer-events-none group-hover:translate-x-[250%] transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]"
                   aria-hidden="true"
                 />
 
                 <span className="font-sans relative z-10">EXPLORE OUR PRODUCTS</span>
-                <ArrowRight className="relative z-10 w-3.5 h-3.5 stroke-[2] transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1.5" />
+                <ArrowRight className="relative z-10 w-3.5 h-3.5 stroke-[2] text-white/90 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1" />
               </Link>
             </div>
           </div>
